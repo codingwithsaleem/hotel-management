@@ -29,6 +29,9 @@ import {
   LineChart,
   QrCode,
   X,
+  Hotel,
+  Tag,
+  HotelIcon,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -62,56 +65,6 @@ const DesktopHeader = () => {
           <DropdownMenuLabel className="text-sm font-semibold">Hotel Management</DropdownMenuLabel>
           <DropdownMenuSeparator className="bg-gray-200" />
           <DropdownMenuItem className="gap-2 hover:bg-blue-50">
-            <Building2 className="h-4 w-4" />
-            Property Management
-          </DropdownMenuItem>
-          <DropdownMenuItem className="gap-2 hover:bg-blue-50">
-            <Users className="h-4 w-4" />
-            Room Management
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button 
-            variant="ghost" 
-            className="rounded-xl text-white hover:!bg-transparent hover:!text-white focus:!outline-none focus:!ring-0 focus:!border-none active:!outline-none active:!ring-0 active:!border-none px-4 py-2 h-auto text-sm font-medium"
-          >
-            Configuration <ChevronDown className="ml-1 h-4 w-4" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="start" className="w-64 bg-white/95 backdrop-blur-md border-white/20">
-          <DropdownMenuLabel className="text-sm font-semibold">Configuration</DropdownMenuLabel>
-          <DropdownMenuSeparator className="bg-gray-200" />
-          <DropdownMenuItem className="gap-2 hover:bg-blue-50">
-            <Settings className="h-4 w-4" />
-            General Settings
-          </DropdownMenuItem>
-          <DropdownMenuItem className="gap-2 hover:bg-blue-50">
-            <Map className="h-4 w-4" />
-            Locations & Maps
-          </DropdownMenuItem>
-          <DropdownMenuItem className="gap-2 hover:bg-blue-50">
-            <CalendarClock className="h-4 w-4" />
-            Calendars
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button 
-            variant="ghost" 
-            className="rounded-xl text-white hover:!bg-transparent hover:!text-white focus:!outline-none focus:!ring-0 focus:!border-none active:!outline-none active:!ring-0 active:!border-none px-4 py-2 h-auto text-sm font-medium"
-          >
-            Guest Features <ChevronDown className="ml-1 h-4 w-4" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="start" className="w-72 bg-white/95 backdrop-blur-md border-white/20">
-          <DropdownMenuLabel className="text-sm font-semibold">Guest Features</DropdownMenuLabel>
-          <DropdownMenuSeparator className="bg-gray-200" />
-          <DropdownMenuItem className="gap-2 hover:bg-blue-50">
             <MapPinned className="h-4 w-4" />
             Premises
           </DropdownMenuItem>
@@ -142,6 +95,60 @@ const DesktopHeader = () => {
           <DropdownMenuItem className="gap-2 hover:bg-blue-50">
             <QrCode className="h-4 w-4" />
             Guest Bookings & QR
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button 
+            variant="ghost" 
+            className="rounded-xl text-white hover:!bg-transparent hover:!text-white focus:!outline-none focus:!ring-0 focus:!border-none active:!outline-none active:!ring-0 active:!border-none px-4 py-2 h-auto text-sm font-medium"
+          >
+            Configuration <ChevronDown className="ml-1 h-4 w-4" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="start" className="w-64 bg-white/95 backdrop-blur-md border-white/20">
+          <DropdownMenuLabel className="text-sm font-semibold">Configuration</DropdownMenuLabel>
+          <DropdownMenuSeparator className="bg-gray-200" />
+          <DropdownMenuItem className="gap-2 hover:bg-blue-50">
+            <Tag className="h-4 w-4" />
+            Premise Types
+          </DropdownMenuItem>
+          <DropdownMenuItem className="gap-2 hover:bg-blue-50">
+            <Hotel className="h-4 w-4" />
+            Hotel Profile
+          </DropdownMenuItem>
+          <DropdownMenuItem className="gap-2 hover:bg-blue-50">
+            <Users className="h-4 w-4" />
+           Assign Hotels to Users
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button 
+            variant="ghost" 
+            className="rounded-xl text-white hover:!bg-transparent hover:!text-white focus:!outline-none focus:!ring-0 focus:!border-none active:!outline-none active:!ring-0 active:!border-none px-4 py-2 h-auto text-sm font-medium"
+          >
+            Guest Features <ChevronDown className="ml-1 h-4 w-4" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="start" className="w-72 bg-white/95 backdrop-blur-md border-white/20">
+          <DropdownMenuLabel className="text-sm font-semibold">Guest Features</DropdownMenuLabel>
+          <DropdownMenuSeparator className="bg-gray-200" />
+          <DropdownMenuItem className="gap-2 hover:bg-blue-50">
+            <MapPinned className="h-4 w-4" />
+            Reservations
+          </DropdownMenuItem>
+          <DropdownMenuItem className="gap-2 hover:bg-blue-50">
+            <HotelIcon className="h-4 w-4" />
+            Hotel Services
+          </DropdownMenuItem>
+          <DropdownMenuItem className="gap-2 hover:bg-blue-50">
+            <CalendarDays className="h-4 w-4" />
+           Loyalty Program (coming soon)
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
