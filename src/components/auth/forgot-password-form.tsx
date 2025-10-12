@@ -15,9 +15,8 @@ import {
 } from "@/components/ui/form";
 import { Mail } from "lucide-react";
 import { z } from "zod";
-import LogoSvg from "@/utils/svgs/LogoSvg";
-import BackgroundWhiteLogoSvg from "@/utils/svgs/BackgroundWhiteLogoSvg";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { authService } from "@/lib/services/auth.service";
@@ -66,25 +65,28 @@ export default function ForgotPasswordForm() {
     <div
       className="min-h-screen flex items-center justify-center p-4"
       style={{
-        backgroundImage: "url('/images/auth/bg1.jpg')",
+        backgroundImage: "url('/images/auth/bg1.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="hidden md:block h-auto absolute -left-20 top-1/2 -translate-y-1/2 translate-x-1/2 origin-center">
-        <BackgroundWhiteLogoSvg />
-      </div>
       <div className="w-full md:max-w-lg">
-        <div className="rounded-3xl p-8 shadow-[0_0_22px_0_rgba(143,141,235,0.55)] bg-white/15 border-2 border-[#e5e7eb]">
+        <div className="rounded-3xl p-8 shadow-[0_0_22px_0_rgba(143,141,235,0.55)] bg-white/15 border-2 border-white">
           {/* Logo */}
           <div className="text-center mb-8">
-            <span className="text-3xl font-bold text-[#8898f0] mb-6 flex justify-center">
-              <LogoSvg width={120} height={40} />
+            <span className="text-3xl font-bold text-primary mb-6 flex justify-center">
+              <Image
+                width={200}
+                height={40}
+                src="/images/auth/logo1.svg"
+                alt="Logo"
+                className="w-30"
+              />
             </span>
-            <h3 className="text-2xl font-bold text-[#000000] mb-2">
+            <h3 className="text-2xl font-bold text-white mb-2">
               Forgot Password
             </h3>
-            <p className="text-[#9ca3af] text-sm">
+            <p className="text-white text-sm">
               Enter your email to reset your password
             </p>
           </div>
@@ -98,17 +100,17 @@ export default function ForgotPasswordForm() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm font-medium">
+                    <FormLabel className="text-sm font-medium text-white">
                       Email Address
                     </FormLabel>
                     <FormControl>
                       <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#9ca3af] h-5 w-5" />
+                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white h-5 w-5" />
                         <Input
                           {...field}
                           type="email"
                           placeholder="yourname@gmail.com"
-                          className="text-[#8898f0] pl-10 h-12 border-[#e5e7eb] rounded-3xl focus:border-[#8898f0] focus:ring-[#8898f0] border-2"
+                          className="placeholder:text-white text-primary pl-10 h-12 border-white rounded-3xl focus:border-primary focus:ring-primary border-2"
                         />
                       </div>
                     </FormControl>
@@ -121,8 +123,8 @@ export default function ForgotPasswordForm() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                variant="myCustomButton1"
-                className="h-12"
+                variant="default"
+                className="h-12 w-full rounded-3xl bg-primary text-white font-semibold hover:bg-primary/90 transition-colors"
               >
                 {isLoading ? "Sending..." : "Send Reset Link"}
               </Button>
@@ -131,9 +133,9 @@ export default function ForgotPasswordForm() {
 
           {/* Back to Sign In */}
           <div className="text-center mt-6">
-            <span className="text-[#383838] text-sm">
+            <span className="text-white text-sm">
               Remember your password?{" "}
-              <Link href="/login" className="text-[#8898f0] font-medium hover:underline">
+              <Link href="/login" className="text-primary font-medium hover:underline">
                 Sign In
               </Link>
             </span>

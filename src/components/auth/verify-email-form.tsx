@@ -16,9 +16,8 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { z } from "zod";
-import LogoSvg from "@/utils/svgs/LogoSvg";
-import BackgroundWhiteLogoSvg from "@/utils/svgs/BackgroundWhiteLogoSvg";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { authService } from "@/lib/services/auth.service";
@@ -152,29 +151,32 @@ export default function VerifyEmailForm() {
     <div
       className="min-h-screen flex items-center justify-center p-4"
       style={{
-        backgroundImage: "url('/images/auth/bg1.jpg')",
+        backgroundImage: "url('/images/auth/bg1.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="hidden md:block h-auto absolute -left-20 top-1/2 -translate-y-1/2 translate-x-1/2 origin-center">
-        <BackgroundWhiteLogoSvg />
-      </div>
       <div className="w-full md:max-w-lg">
-        <div className="rounded-3xl p-8 shadow-[0_0_22px_0_rgba(143,141,235,0.55)] bg-white/15 border-2 border-[#e5e7eb]">
+        <div className="rounded-3xl p-8 shadow-[0_0_22px_0_rgba(143,141,235,0.55)] bg-white/15 border-2 border-white">
           {/* Logo */}
           <div className="text-center mb-8">
-            <span className="text-3xl font-bold text-[#8898f0] mb-6 flex justify-center">
-              <LogoSvg width={120} height={40} />
+            <span className="text-3xl font-bold text-primary mb-6 flex justify-center">
+              <Image
+                width={200}
+                height={40}
+                src="/images/auth/logo1.svg"
+                alt="Logo"
+                className="w-30"
+              />
             </span>
-            <h3 className="text-2xl font-bold text-[#000000] mb-2">
+            <h3 className="text-2xl font-bold text-white mb-2">
               {resetEmail ? "Verify Your Email For Password Reset" : "Sign in with Email"}
             </h3>
             {email && !resetEmail && (
-              <p className="text-[#9ca3af] text-sm">
+              <p className="text-white text-sm">
                 {email || "ex@example.com"}{" "}
                 <Link href="/signup/sender">
-                  <span className="text-[#8898f0] cursor-pointer underline">
+                  <span className="text-primary cursor-pointer underline">
                     Change Email
                   </span>
                 </Link>
@@ -200,19 +202,19 @@ export default function VerifyEmailForm() {
                         <InputOTPGroup className="gap-4">
                           <InputOTPSlot
                             index={0}
-                            className="w-16 h-16 !rounded-full border-2 border-[#8898f0] text-2xl font-semibold text-[#8898f0] bg-white/20 first:rounded-full"
+                            className="w-16 h-16 !rounded-full border-2 border-white text-2xl font-semibold text-primary bg-white/20 first:rounded-full"
                           />
                           <InputOTPSlot
                             index={1}
-                            className="w-16 h-16 !rounded-full border-2 border-[#8898f0] text-2xl font-semibold text-[#8898f0] bg-white/20"
+                            className="w-16 h-16 !rounded-full border-2 border-white text-2xl font-semibold text-primary bg-white/20"
                           />
                           <InputOTPSlot
                             index={2}
-                            className="w-16 h-16 !rounded-full border-2 border-[#8898f0] text-2xl font-semibold text-[#8898f0] bg-white/20"
+                            className="w-16 h-16 !rounded-full border-2 border-white text-2xl font-semibold text-primary bg-white/20"
                           />
                           <InputOTPSlot
                             index={3}
-                            className="w-16 h-16 !rounded-full border-2 border-[#8898f0] text-2xl font-semibold text-[#8898f0] bg-white/20 last:rounded-full"
+                            className="w-16 h-16 !rounded-full border-2 border-white text-2xl font-semibold text-primary bg-white/20 last:rounded-full"
                           />
                         </InputOTPGroup>
                       </InputOTP>
@@ -230,8 +232,8 @@ export default function VerifyEmailForm() {
                   disabled={!canResend}
                   className={`text-sm transition-colors ${
                     canResend
-                      ? "text-[#8898f0] hover:text-[#6977C5] cursor-pointer"
-                      : "text-[#9ca3af] cursor-not-allowed"
+                      ? "text-primary hover:text-primary/80 cursor-pointer"
+                      : "text-white/60 cursor-not-allowed"
                   }`}
                 >
                   {canResend ? "Resend Code" : `Resend Code in ${countdown}s`}
@@ -242,8 +244,8 @@ export default function VerifyEmailForm() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                variant="myCustomButton1"
-                className="h-12"
+                variant="default"
+                className="h-12 w-full rounded-3xl bg-primary text-white font-semibold hover:bg-primary/90 transition-colors"
               >
                 {isLoading ? "Verifying..." : "Continue"}
               </Button>

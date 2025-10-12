@@ -2,10 +2,10 @@
 import SignUpForm from '@/components/auth/sign-up-form';
 import React from 'react';
 
-const ReceiverSignUpPage = () => {
+const SignUpPage = () => {
   return (
-    <SignUpForm type="receiver" />
+    <SignUpForm/>
   );
 };
 
-export default ReceiverSignUpPage;
+export default SignUpPage;
