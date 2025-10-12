@@ -25,7 +25,6 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import LogoSvg from "@/utils/svgs/LogoSvg";
 import { useDispatch } from "react-redux";
 import authService from "@/lib/services/auth.service";
 import { logout, setError, setLoading } from "@/store/slices/userSlice";
@@ -33,6 +32,7 @@ import type { AppDispatch } from "@/store/store";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import ApiErrorHandler from "@/lib/utils/error-handler";
+import Image from "next/image";
 
 // sender sidebar items
 const senderSideBarItems = [
@@ -119,7 +119,13 @@ export default function DashboardSidebar() {
         <div className="flex items-center">
           {state === "expanded" && (
             //   <h2 className="text-2xl font-bold">fynyl.</h2>
-            <LogoSvg />
+            <Image 
+              width={200}
+              height={40}
+              src="/images/auth/logo1.svg"
+              alt="Logo"
+              className="w-30"
+            />
           )}
         </div>
       </SidebarHeader>

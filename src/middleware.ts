@@ -99,20 +99,7 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/",
-    "/how-it-works",
-    "/about-us",
-    "/pricing",
-    "/contact-us",
-    "/dashboard",
-    "/dashboard/sender",
-    "/dashboard/receiver",
-    "/login",
-    "/signup/sender",
-    "/signup/receiver",
-    "/forgot-password",
-    "/reset-password", 
-    "/verify-user",
-    "/verify-forgot-password",
+    
 
   ],
 }
