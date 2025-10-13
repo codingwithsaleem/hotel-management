@@ -1,4 +1,4 @@
-import AllContracts from "@/components/dashboard/sender/all-contracts";
+import AllContracts from "@/components/dashboard/admin/all-contracts";
 
 const AllContractsPage = () => {
   return <AllContracts />;

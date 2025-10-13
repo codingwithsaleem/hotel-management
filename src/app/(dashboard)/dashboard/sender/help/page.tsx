@@ -1,4 +1,4 @@
-import Help from "@/components/dashboard/sender/help"
+import Help from "@/components/dashboard/admin/help"
 
 const page = () => {
   return (

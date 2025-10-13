@@ -13,18 +13,16 @@ import {
 } from "@/components/ui/sidebar";
 import {
   Home,
-  FileText,
-  Files,
-  User,
+  Building2,
+  Settings,
   Users,
-  MessageCircle,
-  HelpCircle,
-  LogOut,
-  NotebookText,
+  ChevronDown,
+  ChevronRight,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import authService from "@/lib/services/auth.service";
 import { logout, setError, setLoading } from "@/store/slices/userSlice";
@@ -34,44 +32,62 @@ import { useRouter } from "next/navigation";
 import ApiErrorHandler from "@/lib/utils/error-handler";
 import Image from "next/image";
 
-// sender sidebar items
-const senderSideBarItems = [
-  { icon: Home, label: "Dashboard", href: "/sender" },
-  { icon: FileText, label: "Create Contract", href: "/sender/create-contract" },
-  { icon: Files, label: "Contracts", href: "/sender/contracts" },
+const sideBarItems = [
   {
-    icon: User,
-    label: "Account Information",
-    href: "/sender/account-information",
+    icon: Home,
+    label: "Dashboard",
+    href: "/dashboard",
+    isMainItem: true,
   },
-  { icon: Users, label: "Contacts", href: "/sender/contacts" },
-  { icon: MessageCircle, label: "Contact Us", href: "/sender/contact-us" },
-  { icon: NotebookText, label: "Invoices", href: "/sender/invoices" },
-  { icon: HelpCircle, label: "Help", href: "/sender/help" },
-];
-
-// receiver sidebar items
-const receiverSideBarItems = [
-  { icon: Home, label: "Dashboard", href: "/receiver" },
-  { icon: Files, label: "Contracts", href: "/receiver/contracts" },
   {
-    icon: User,
-    label: "Account Information",
-    href: "/receiver/account-information",
+    icon: Building2,
+    label: "Hotel Management",
+    href: "/hotel-management",
+    isExpandable: true,
+    dropdown: [
+      {
+        label: "Premises",
+        href: "/premises",
+      },
+      {
+        label: "Premise Reservations",
+        href: "/premise-reservations",
+      },
+      {
+        label: "Events",
+        href: "/events",
+      },
+      {
+        label: "Services",
+        href: "/services",
+      },
+      { label: "Tour Operators", href: "/tour-operators" },
+      { label: "Staff Management", href: "/staff-management" },
+      { label: "Finance Statement", href: "/finance-statement" },
+      { label: "Guest Bookings & QR", href: "/guest-bookings" },
+    ],
   },
-  { icon: MessageCircle, label: "Contact Us", href: "/receiver/contact-us" },
-  { icon: HelpCircle, label: "Help", href: "/receiver/help" },
-];
-
-// admin sidebar items
-const adminSideBarItems = [
-  { icon: Home, label: "Dashboard", href: "/admin" },
-  { icon: Files, label: "Contract", href: "/admin/contract" },
-  { icon: FileText, label: "Reports", href: "/admin/reports" },
   {
-    icon: User,
-    label: "Account Information",
-    href: "/admin/account-information",
+    icon: Settings,
+    label: "Configuration",
+    href: "/configuration",
+    isExpandable: true,
+    dropdown: [
+      { label: "Premise Types", href: "/premise-types" },
+      { label: "Hotel Profile", href: "/hotel-profile" },
+      { label: "Assign Hotels to Users", href: "/assign-hotels" },
+    ],
+  },
+  {
+    icon: Users,
+    label: "Guest Features",
+    href: "/guest-features",
+    isExpandable: true,
+    dropdown: [
+      { label: "Reservations", href: "/reservations" },
+      { label: "Hotel Services", href: "/hotel-services" },
+      { label: "Loyalty Programs", href: "/loyalty-programs" },
+    ],
   },
 ];
 
@@ -81,10 +97,14 @@ export default function DashboardSidebar() {
   const { state } = useSidebar();
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
+  const [expandedItems, setExpandedItems] = useState<string[]>(['Hotel Management']);
 
-  // Check if current path is dashboard or if we're on the main sender page
-  const isActive = (href: string) => {
-    return pathname === href || pathname === `/dashboard${href}`;
+  const toggleExpanded = (label: string) => {
+    setExpandedItems(prev =>
+      prev.includes(label)
+        ? prev.filter(item => item !== label)
+        : [...prev, label]
+    );
   };
 
   const handleSignOut = async () => {
@@ -114,142 +134,92 @@ export default function DashboardSidebar() {
   };
 
   return (
-    <Sidebar collapsible="offcanvas" className="border-r-0 bg-[#f8f9ff]">
-      <SidebarHeader className="border-b-1 p-6 bg-white">
+    <Sidebar collapsible="offcanvas" className="border-r-1 border-gray-200 bg-white">
+      <SidebarHeader className="border-b-1 border-gray-200 p-6 bg-white">
         <div className="flex items-center">
-          {state === "expanded" && (
-            //   <h2 className="text-2xl font-bold">fynyl.</h2>
-            <Image 
-              width={200}
-              height={40}
-              src="/images/auth/logo1.svg"
-              alt="Logo"
-              className="w-30"
-            />
-          )}
+          <Image
+            src="/images/logo1.svg"
+            alt="Hotel Management Logo"
+            width={200}
+            height={40}
+            className="w-100 h-10"
+          />
         </div>
       </SidebarHeader>
+      <SidebarContent className="bg-white py-10 pl-4">
+        <div className="space-y-0">
+          {sideBarItems.map((item) => {
+            const isExpanded = expandedItems.includes(item.label);
+            const isActive = pathname === item.href;
+            
+            return (
+              <div key={item.label} className="w-full">
+                {/* Main Item */}
+                <div 
+                  className={cn(
+                    "w-full transition-all duration-200 text-lg mb-2",
+                    item.isMainItem && "bg-primary/15"
+                  )}
+                >
+                  {item.isExpandable ? (
+                    <button
+                      onClick={() => toggleExpanded(item.label)}
+                      className={cn(
+                        "w-full flex items-center justify-between px-4 py-6 text-left transition-all duration-200",
+                        "hover:bg-primary/15 text-gray-700 font-medium"
+                      )}
+                    >
+                      <div className="flex items-center space-x-3">
+                        <item.icon className="h-5 w-5 text-primary" />
+                        <span className="text-sm font-medium">{item.label}</span>
+                      </div>
+                      {isExpanded ? (
+                        <ChevronDown className="h-4 w-4 text-gray-500" />
+                      ) : (
+                        <ChevronRight className="h-4 w-4 text-gray-500" />
+                      )}
+                    </button>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "w-full flex items-center space-x-3 px-4 py-6 transition-all duration-200",
+                        item.isMainItem 
+                          ? "text-black font-semibold" 
+                          : "text-gray-700 hover:bg-blue-50 font-medium"
+                      )}
+                    >
+                      <item.icon className={cn(
+                        "h-5 w-5",
+                        item.isMainItem ? "text-primary" : "text-primary"
+                      )} />
+                      <span className="text-sm">{item.label}</span>
+                    </Link>
+                  )}
+                </div>
 
-      <SidebarContent className="bg-[#f8f9ff] py-10">
-        <SidebarMenu className="space-y-0 gap-0">
-          {paths.includes("sender") &&
-            senderSideBarItems.map((item) => {
-              const active = isActive(item.href);
-              return (
-                <SidebarMenuItem key={item.label} className="rounded-none">
-                  <SidebarMenuButton
-                    asChild
-                    className={cn(
-                      "py-6 lg:py-10 h-14 text-[#64748b] hover:bg-[#8898f0]/10 hover:text-[#8898f0] transition-all duration-200 border-b border-[#e5e7eb] rounded-none",
-                      active && "bg-[#8898f0]/10"
-                    )}
-                  >
-                    <Link
-                      href={`/dashboard${item.href}`}
-                      className="flex items-center space-x-4 px-4 md:px-8"
-                    >
-                      <item.icon
-                        className="h-10 w-10 shrink-0"
-                        color={active ? "#8898f0" : "#64748b"}
-                      />
-                      <span
-                        className={cn(
-                          "font-medium text-base",
-                          active && "font-bold text-black"
-                        )}
-                      >
-                        {item.label}
-                      </span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              );
-            })}
-          {paths.includes("receiver") &&
-            receiverSideBarItems.map((item) => {
-              const active = isActive(item.href);
-              return (
-                <SidebarMenuItem key={item.label} className="rounded-none">
-                  <SidebarMenuButton
-                    asChild
-                    className={cn(
-                      "py-6 lg:py-10 h-14 text-[#64748b] hover:bg-[#8898f0]/10 hover:text-[#8898f0] transition-all duration-200 border-b border-[#e5e7eb] rounded-none",
-                      active && "bg-[#8898f0]/10"
-                    )}
-                  >
-                    <Link
-                      href={`/dashboard${item.href}`}
-                      className="flex items-center space-x-4 px-4 md:px-8"
-                    >
-                      <item.icon
-                        className="h-10 w-10 shrink-0"
-                        color={active ? "#8898f0" : "#64748b"}
-                      />
-                      <span
-                        className={cn(
-                          "font-medium text-base",
-                          active && "font-bold text-black"
-                        )}
-                      >
-                        {item.label}
-                      </span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              );
-            })}
-          {paths.includes("admin") &&
-            adminSideBarItems.map((item) => {
-              const active = isActive(item.href);
-              return (
-                <SidebarMenuItem key={item.label} className="rounded-none">
-                  <SidebarMenuButton
-                    asChild
-                    className={cn(
-                      "py-6 lg:py-10 h-14 text-[#64748b] hover:bg-[#8898f0]/10 hover:text-[#8898f0] transition-all duration-200 border-b border-[#e5e7eb] rounded-none",
-                      active && "bg-[#8898f0]/10"
-                    )}
-                  >
-                    <Link
-                      href={`/dashboard${item.href}`}
-                      className="flex items-center space-x-4 px-4 md:px-8"
-                    >
-                      <item.icon
-                        className="h-10 w-10 shrink-0"
-                        color={active ? "#8898f0" : "#64748b"}
-                      />
-                      <span
-                        className={cn(
-                          "font-medium text-base",
-                          active && "font-bold text-black"
-                        )}
-                      >
-                        {item.label}
-                      </span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              );
-            })}
-        </SidebarMenu>
-      </SidebarContent>
-
-      <SidebarFooter className="p-0">
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              className="rounded-none text-white hover:bg-[#7c86e8] transition-all duration-200 bg-[#8898f0] h-17 cursor-pointer"
-              onClick={handleSignOut}
-            >
-              <div className="flex items-center space-x-4 px-4">
-                <LogOut className="h-4 w-5 shrink-0" />
-                <span className="font-medium text-base">Logout</span>
+                {/* Dropdown Items */}
+                {item.isExpandable && isExpanded && item.dropdown && (
+                  <div className="bg-white border-l-2 border-blue-200 ml-4">
+                    <ul className="py-2">
+                      {item.dropdown.map((subItem) => (
+                        <li key={subItem.label}>
+                          <Link
+                            href={subItem.href}
+                            className="block px-6 py-2 text-sm text-primary/80 hover:bg-blue-50 hover:text-primary transition-colors duration-200"
+                          >
+                            • {subItem.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarFooter>
+            );
+          })}
+        </div>
+      </SidebarContent>
 
       <SidebarRail />
     </Sidebar>

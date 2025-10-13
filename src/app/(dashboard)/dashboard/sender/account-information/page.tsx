@@ -1,4 +1,4 @@
-import { AccountInformation } from "@/components/dashboard/sender/account-information"
+import { AccountInformation } from "@/components/dashboard/admin/account-information"
 
 const page = () => {
   return (

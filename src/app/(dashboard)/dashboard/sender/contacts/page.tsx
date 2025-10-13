@@ -1,4 +1,4 @@
-import Contacts from "@/components/dashboard/sender/contacts"
+import Contacts from "@/components/dashboard/admin/contacts"
 
 const page = () => {
   return (

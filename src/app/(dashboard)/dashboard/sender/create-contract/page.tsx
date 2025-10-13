@@ -1,4 +1,4 @@
-import CreateContract from '@/components/dashboard/sender/create-contract'
+import CreateContract from '@/components/dashboard/admin/create-contract'
 
 const CreateContractPage = () => {
   return <CreateContract />
