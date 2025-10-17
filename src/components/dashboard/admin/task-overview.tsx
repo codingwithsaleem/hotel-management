@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { RootState } from "@/store/store";
 import { useSelector } from "react-redux";
@@ -56,10 +57,21 @@ export default function TaskOverview() {
       }}
     >
       {/* Welcome Section */}
-      <div className="mb-8">
-      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#383838] mb-2 leading-tight">
+      <div className="mb-8 flex items-center justify-between">
+      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 leading-tight">
         Task Overview
       </h1>
+      <div className="flex gap-2">
+            <Button  className="cursor-pointer font-semibold">
+              + New Task
+            </Button>
+            <Button className="cursor-pointer font-semibold">
+              All Task
+            </Button>
+            <Button className="cursor-pointer font-semibold">
+              View Hotel Page
+            </Button>
+          </div>
       </div>
 
       {/* Stats Grid */}
