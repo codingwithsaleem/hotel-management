@@ -10,7 +10,7 @@ interface DashboardLayoutProps {
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
-    <div className="min-h-screen" style={{
+    <div className="min-h-screen bg-primary/8" style={{
         backgroundImage: "url('/images/auth/bg1.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
