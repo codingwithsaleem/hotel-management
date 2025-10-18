@@ -42,15 +42,15 @@ export function RecentActivities() {
   ];
 
   return (
-    <Card className="rounded-2xl border-0">
-      <CardHeader className="border-b-2 border-b-[#0079FF] pb-4">
-        <div className="flex items-center justify-between">
-          <CardTitle className="text-xl font-bold text-gray-900">Recent Activities</CardTitle>
-          <a href="#" className="text-sm font-medium text-[#0079FF] hover:underline">View All</a>
+    <Card className="bg-background border-0 shadow-sm py-0">
+      <CardHeader className="px-0 bg-primary/5  border-0 rounded-t-lg border-b-2 border-b-primary">
+        <div className="flex items-center justify-between p-4">
+          <CardTitle className="text-lg font-semibold">Recent Activities</CardTitle>
+          <a href="#" className="text-sm font-medium text-primary hover:underline">View All</a>
         </div>
       </CardHeader>
 
-      <CardContent className="space-y-4 pt-6">
+      <CardContent className="space-y-4 py-6">
         {activities.map((act) => (
           <div key={act.id} className="flex items-start justify-between gap-4 rounded-lg bg-primary/10 p-4 shadow-sm">
             <div className="flex-1">
@@ -59,7 +59,7 @@ export function RecentActivities() {
             </div>
 
             <div className="flex flex-col items-end gap-2">
-              <Eye className="h-5 w-5 text-blue-400" />
+              <Eye className="h-5 w-5 text-primary/70" />
             </div>
           </div>
         ))}

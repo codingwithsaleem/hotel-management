@@ -46,29 +46,29 @@ export function MyAssignments() {
   ]
 
   return (
-    <Card className="rounded-2xl border-0">
-      <CardHeader className="border-b-2 border-b-[#0079FF] pb-4">
-        <div className="flex items-center justify-between">
-          <CardTitle className="text-xl font-bold text-gray-900">My Assignments</CardTitle>
-          <a href="#" className="text-sm font-medium text-[#0079FF] hover:underline">
+    <Card className="bg-background border-0 shadow-sm py-0">
+      <CardHeader className="px-0 bg-primary/5  border-0 rounded-t-lg border-b-2 border-b-primary">
+        <div className="flex items-center justify-between p-4">
+          <CardTitle className="text-lg font-semibold">My Assignments</CardTitle>
+          <a href="#" className="text-sm font-medium text-primary hover:underline">
             All Tasks
           </a>
         </div>
       </CardHeader>
-      <CardContent className="space-y-6 pt-6">
+      <CardContent className="space-y-6 py-6">
         {/* Service Requests Section */}
         <div>
-          <h3 className="mb-4 text-sm font-semibold text-[#0079FF]">Service Requests</h3>
+          <h3 className="mb-4 text-sm font-semibold text-primary">Service Requests</h3>
           <div className="space-y-3">
             {serviceRequests.map((item) => (
-              <div key={item.id} className="flex items-start justify-between gap-4 rounded-lg bg-primary/10 p-4">
+              <div key={item.id} className="flex items-start justify-between gap-4 rounded-lg border border-primary/70 p-4">
                 <div className="flex-1">
                   <div className="font-semibold text-gray-900">
                     [{item.id}] {item.title}
                   </div>
                   <div className="text-sm text-gray-600">{item.subtitle}</div>
                   <div className="mt-3 flex items-center gap-2">
-                    <Badge variant="outline" className="border-blue-300 bg-blue-50 text-xs text-blue-700">
+                    <Badge variant="outline" className="border-blue-300 bg-blue-50 text-xs text-primary/70">
                       📍 {item.room}
                     </Badge>
                   </div>

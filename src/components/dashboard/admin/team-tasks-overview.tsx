@@ -63,16 +63,16 @@ export function TeamTasksOverview() {
   ]
 
   return (
-    <Card className="rounded-2xl border-0">
-      <CardHeader className="border-b-2 border-b-primary pb-4">
-        <div className="flex items-center justify-between">
-          <CardTitle className="text-xl font-bold text-gray-900">Team Tasks Overview</CardTitle>
+    <Card className="bg-background border-0 shadow-sm py-0">
+      <CardHeader className="px-0 bg-primary/5  border-0 rounded-t-lg border-b-2 border-b-primary">
+        <div className="flex items-center justify-between p-4">
+          <CardTitle className="text-lg font-semibold">Team Tasks Overview</CardTitle>
           <a href="#" className="text-sm font-medium text-primary hover:underline">
             Tasks Dashboard
           </a>
         </div>
       </CardHeader>
-      <CardContent className="space-y-4 pt-6 px-0">
+      <CardContent className="space-y-4 px-0">
         <div className="border-b-1 border-b-primary/60 pb-3">
           <span className="font-semibold text-gray-900 px-4 md:px-6">David Gagua</span>
         </div>
@@ -80,7 +80,7 @@ export function TeamTasksOverview() {
           Unassigned Tasks (14)
         </a>
 
-        <div className="space-y-0 max-h-96 overflow-y-auto px-2 md:px-4">
+        <div className="space-y-0 max-h-120 overflow-y-auto px-2 md:px-4">
           {tasks.map((task, index) => (
             <div
               key={task.id}

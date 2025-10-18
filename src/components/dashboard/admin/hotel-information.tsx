@@ -12,20 +12,20 @@ export function HotelInformation() {
   ]
 
   return (
-    <Card className="bg-background border-0 shadow-sm">
-      <CardHeader className="pb-3">
-        <CardTitle className="text-lg font-semibold border-b-2 border-primary pb-3">Hotel Information</CardTitle>
+    <Card className="bg-background border-0 shadow-sm py-0">
+      <CardHeader className="px-0 bg-primary/5  border-0 rounded-t-lg border-b-2 border-b-primary">
+        <CardTitle className="text-lg font-semibold  p-4">Hotel Information</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
           {hotelData.map((item) => (
-            <div key={item.label} className="flex justify-between items-center">
+            <div key={item.label} className="flex justify-start gap-4 items-center">
               <span className="text-primary font-medium">{item.label}:</span>
               <span className="text-foreground">{item.value}</span>
             </div>
           ))}
-          <div className="pt-4">
-            <Button className="bg-primary hover:bg-primary/90 w-full">Edit Hotel Profile</Button>
+          <div className="py-4 flex justify-end">
+            <Button className="bg-primary hover:bg-transparent hover:border-primary hover:text-primary hover:border cursor-pointer">Edit Hotel Profile</Button>
           </div>
         </div>
       </CardContent>
