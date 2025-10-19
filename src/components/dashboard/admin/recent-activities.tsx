@@ -41,6 +41,8 @@ export function RecentActivities() {
     },
   ];
 
+
+
   return (
     <Card className="bg-background border-0 shadow-sm py-0">
       <CardHeader className="px-0 bg-primary/5  border-0 rounded-t-lg border-b-2 border-b-primary">

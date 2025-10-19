@@ -110,7 +110,7 @@ export default function ForgotPasswordForm() {
                           {...field}
                           type="email"
                           placeholder="yourname@gmail.com"
-                          className="placeholder:text-white text-primary pl-10 h-12 border-white rounded-3xl focus:border-primary focus:ring-primary border-2"
+                          className="placeholder:text-white text-primary pl-10 h-12 border-white rounded-3xl focus:outline-none focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 border-2"
                         />
                       </div>
                     </FormControl>

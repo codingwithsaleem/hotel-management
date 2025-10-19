@@ -1,54 +1,38 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import DashboardHeroCover from "@/components/dashboard/admin/dashboard-hero-cover";
+import AllBookings from "@/components/dashboard/admin/events/all-bookings";
+import EventListTable from "@/components/dashboard/admin/events/event-list-table";
 import { Card, CardContent } from "@/components/ui/card";
 import { RootState } from "@/store/store";
 import { useSelector } from "react-redux";
-import DashboardHeroCover from "./dashboard-hero-cover";
 
 const statsData = [
   {
-    title: "My Pending Tasks",
+    title: "Total Events",
     count: "03",
   },
   {
-    title: "In Progress",
-    count: "01",
-  },
-  {
-    title: "Completed Today",
+    title: "Published Events",
     count: "0",
   },
   {
-    title: "Total Active Tasks",
-    count: "01",
-  },
-  {
-    title: "Premises",
-    count: "06",
-  },
-  {
-    title: "Active Premises",
-    count: "06",
-  },
-  {
     title: "Upcoming Events",
-    count: "01",
+    count: "0",
   },
   {
-    title: "Services",
-    count: "03",
+    title: "Total Reservations",
+    count: "0",
   },
 ];
 
-const heading = "Task Overview";
+const heading = "Event Management";
 const buttonsData = [
-  { label: "+ New Task" },
-  { label: "All Task" },
-  { label: "View Hotel Page" },
+  { label: "Calendar View" },
+  { label: "+ Create New Event" },
 ];
 
-export default function TaskOverview() {
+export default function page() {
   const user = useSelector((state: RootState) => state.user.user);
   return (
     <div>
@@ -74,12 +58,12 @@ export default function TaskOverview() {
                   </div>
                 </div>
               </CardContent>
-              {/* <div className="flex items-center justify-between p-1 border-0 rounded-2xl bg-accent absolute bottom-0 left-0 right-0">
-        </div> */}
             </Card>
           ))}
         </div>
+        <AllBookings />
       </DashboardHeroCover>
+      <EventListTable />
     </div>
   );
 }

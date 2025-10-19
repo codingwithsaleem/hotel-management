@@ -47,24 +47,24 @@ const sideBarItems = [
     dropdown: [
       {
         label: "Premises",
-        href: "/premises",
+        href: "/dashboard/admin/premises",
       },
       {
         label: "Premise Reservations",
-        href: "/premise-reservations",
+        href: "/dashboard/admin/premise-reservations",
       },
       {
         label: "Events",
-        href: "/events",
+        href: "/dashboard/admin/events",
       },
       {
         label: "Services",
-        href: "/services",
+        href: "/dashboard/admin/services",
       },
-      { label: "Tour Operators", href: "/tour-operators" },
-      { label: "Staff Management", href: "/staff-management" },
-      { label: "Finance Statement", href: "/finance-statement" },
-      { label: "Guest Bookings & QR", href: "/guest-bookings" },
+      { label: "Tour Operators", href: "/dashboard/admin/tour-operators" },
+      { label: "Staff Management", href: "/dashboard/admin/staff-management" },
+      { label: "Finance Statement", href: "/dashboard/admin/finance-statement" },
+      { label: "Guest Bookings & QR", href: "/dashboard/admin/guest-bookings" },
     ],
   },
   {

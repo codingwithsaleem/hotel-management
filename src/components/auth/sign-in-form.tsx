@@ -122,7 +122,7 @@ export default function SignInForm() {
                           {...field}
                           type="email"
                           placeholder="yourname@gmail.com"
-                          className="text-primary pl-10 h-12 border-white rounded-3xl focus:border-primary focus:ring-primary border-2 placeholder:text-white"
+                          className="text-primary pl-10 h-12 border-white rounded-3xl focus:outline-none focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 border-2 placeholder:text-white"
                         />
                       </div>
                     </FormControl>
@@ -147,7 +147,7 @@ export default function SignInForm() {
                           {...field}
                           type={showPassword ? "text" : "password"}
                           placeholder="••••••••••"
-                          className="pl-10 pr-10 h-12 border-white text-primary rounded-3xl focus:border-primary focus:ring-primary border-2 placeholder:text-white"
+                          className="pl-10 pr-10 h-12 border-white text-primary rounded-3xl focus:outline-none focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 border-2 placeholder:text-white"
                         />
                         <button
                           type="button"
