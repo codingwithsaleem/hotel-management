@@ -28,12 +28,10 @@ import {
   Users,
   LineChart,
   QrCode,
-  X,
   Hotel,
   Tag,
   HotelIcon,
 } from "lucide-react"
-import { cn } from "@/lib/utils"
 
 // Desktop Header Component
 const DesktopHeader = () => {

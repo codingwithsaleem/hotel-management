@@ -1,6 +1,5 @@
 import type React from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { CalendarDays, ConciergeBell, Building2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 

@@ -13,7 +13,7 @@ interface FilterValues {
   additionalFilter?: string
 }
 
-const page = () => {
+const PremiseReservationPage = () => {
   const [filters, setFilters] = useState<FilterValues>({
     status: "all",
     premise: "all",
@@ -36,7 +36,7 @@ const page = () => {
       endDate: undefined,
       additionalFilter: "",
     })
-    console.log("Filters cleared")
+    console.log("Filters cleared",filters)
     // Add your clear logic here
   }
 
@@ -50,4 +50,4 @@ const page = () => {
   )
 }
 
-export default page
+export default PremiseReservationPage

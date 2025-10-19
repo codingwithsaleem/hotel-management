@@ -16,12 +16,10 @@ import {
 import { User, Lock, Eye, EyeOff, Mail } from "lucide-react";
 import { signUpSchema, type SignUpFormData } from "@/lib/validations/auth";
 import { authService } from "@/lib/services/auth.service";
-import BackgroundWhiteLogoSvg from "@/utils/svgs/BackgroundWhiteLogoSvg";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import ApiErrorHandler from "@/lib/utils/error-handler";
-import { FiSend, FiDownload } from "react-icons/fi";
 import Image from "next/image";
 
 export default function SignUpForm() {

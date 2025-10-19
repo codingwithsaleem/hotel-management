@@ -193,7 +193,7 @@ export default function SignInForm() {
             <div className="flex-1 border-t border-white"></div>
           </div>
           <div className="flex justify-center items-center">
-            <p className="text-white text-sm">Don't have an account? <Link href="/sign-up" className="text-white underline hover:text-primary hover:underline-primary">Register</Link></p>
+            <p className="text-white text-sm">Don&apos;t have an account? <Link href="/sign-up" className="text-white underline hover:text-primary hover:underline-primary">Register</Link></p>
           </div>
         </div>
       </div>

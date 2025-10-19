@@ -3,13 +3,13 @@
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
+  // SidebarFooter,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
+  // SidebarMenu,
+  // SidebarMenuButton,
+  // SidebarMenuItem,
   SidebarRail,
-  useSidebar,
+  // useSidebar,
 } from "@/components/ui/sidebar";
 import {
   Home,
@@ -20,16 +20,16 @@ import {
   ChevronRight,
 } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+// import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import authService from "@/lib/services/auth.service";
-import { logout, setError, setLoading } from "@/store/slices/userSlice";
-import type { AppDispatch } from "@/store/store";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import ApiErrorHandler from "@/lib/utils/error-handler";
+// import { useDispatch } from "react-redux";
+// import authService from "@/lib/services/auth.service";
+// import { logout, setError, setLoading } from "@/store/slices/userSlice";
+// import type { AppDispatch } from "@/store/store";
+// import { toast } from "sonner";
+// import { useRouter } from "next/navigation";
+// import ApiErrorHandler from "@/lib/utils/error-handler";
 import Image from "next/image";
 
 const sideBarItems = [
@@ -92,11 +92,11 @@ const sideBarItems = [
 ];
 
 export default function DashboardSidebar() {
-  const pathname = usePathname();
-  const paths = pathname.split("/");
-  const { state } = useSidebar();
-  const router = useRouter();
-  const dispatch = useDispatch<AppDispatch>();
+  // const pathname = usePathname();
+  // const paths = pathname.split("/");
+  // const { state } = useSidebar();
+  // const router = useRouter();
+  // const dispatch = useDispatch<AppDispatch>();
   const [expandedItems, setExpandedItems] = useState<string[]>(['Hotel Management']);
 
   const toggleExpanded = (label: string) => {
@@ -107,31 +107,31 @@ export default function DashboardSidebar() {
     );
   };
 
-  const handleSignOut = async () => {
-    try {
-      // Set loading state
-      dispatch(setLoading(true));
+  // const handleSignOut = async () => {
+  //   try {
+  //     // Set loading state
+  //     dispatch(setLoading(true));
 
-      // Call auth service directly
-      const response = await authService.logout();
+  //     // Call auth service directly
+  //     const response = await authService.logout();
 
-      if (response.success) {
-        // Dispatch logout action to clear Redux state
-        dispatch(logout());
+  //     if (response.success) {
+  //       // Dispatch logout action to clear Redux state
+  //       dispatch(logout());
 
-        toast.success("Logged out successfully!");
-        router.push("/login");
-      } else {
-        dispatch(setError(response.message || "Logout failed"));
-      }
-    } catch (error) {
-      const errorMessage = ApiErrorHandler.getErrorMessage(error);
-      dispatch(setError(errorMessage));
-      toast.error("Logout failed. Please try again.");
-    } finally {
-      dispatch(setLoading(false));
-    }
-  };
+  //       toast.success("Logged out successfully!");
+  //       router.push("/login");
+  //     } else {
+  //       dispatch(setError(response.message || "Logout failed"));
+  //     }
+  //   } catch (error) {
+  //     const errorMessage = ApiErrorHandler.getErrorMessage(error);
+  //     dispatch(setError(errorMessage));
+  //     toast.error("Logout failed. Please try again.");
+  //   } finally {
+  //     dispatch(setLoading(false));
+  //   }
+  // };
 
   return (
     <Sidebar collapsible="offcanvas" className="border-r-1 border-gray-200 bg-white">
@@ -150,7 +150,7 @@ export default function DashboardSidebar() {
         <div className="space-y-0">
           {sideBarItems.map((item) => {
             const isExpanded = expandedItems.includes(item.label);
-            const isActive = pathname === item.href;
+            // const isActive = pathname === item.href;
             
             return (
               <div key={item.label} className="w-full">

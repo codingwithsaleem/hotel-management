@@ -13,7 +13,7 @@ interface FilterValues {
 }
 
 
-const page = () => {
+const PremisesPage = () => {
 
     const [filters, setFilters] = useState<FilterValues>({
     search: "",
@@ -23,14 +23,15 @@ const page = () => {
 
   const handleFilter = (values: FilterValues) => {
     setFilters(values)
-    console.log("Filtering with:", values)
+    console.log("Filtering with:", values,)
+    console.log("Filters:", filters)
     // Add your filtering logic here
   }
 
-  const handleAddNew = () => {
-    console.log("Add new premise clicked")
-    // Add your modal or navigation logic here
-  }
+//   const handleAddNew = () => {
+//     console.log("Add new premise clicked")
+//     // Add your modal or navigation logic here
+//   }
 
 
   return (
@@ -43,4 +44,4 @@ const page = () => {
   )
 }
 
-export default page
+export default PremisesPage

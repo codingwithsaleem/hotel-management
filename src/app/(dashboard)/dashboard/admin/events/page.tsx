@@ -4,8 +4,8 @@ import DashboardHeroCover from "@/components/dashboard/admin/dashboard-hero-cove
 import AllBookings from "@/components/dashboard/admin/events/all-bookings";
 import EventListTable from "@/components/dashboard/admin/events/event-list-table";
 import { Card, CardContent } from "@/components/ui/card";
-import { RootState } from "@/store/store";
-import { useSelector } from "react-redux";
+// import { RootState } from "@/store/store";
+// import { useSelector } from "react-redux";
 
 const statsData = [
   {
@@ -33,7 +33,6 @@ const buttonsData = [
 ];
 
 export default function page() {
-  const user = useSelector((state: RootState) => state.user.user);
   return (
     <div>
       <DashboardHeroCover heading={heading} buttonsData={buttonsData}>

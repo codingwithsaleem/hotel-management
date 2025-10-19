@@ -1,9 +1,8 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { RootState } from "@/store/store";
-import { useSelector } from "react-redux";
+// import { RootState } from "@/store/store";
+// import { useSelector } from "react-redux";
 import DashboardHeroCover from "./dashboard-hero-cover";
 
 const statsData = [
@@ -49,7 +48,7 @@ const buttonsData = [
 ];
 
 export default function TaskOverview() {
-  const user = useSelector((state: RootState) => state.user.user);
+  // const user = useSelector((state: RootState) => state.user.user);
   return (
     <div>
       <DashboardHeroCover heading={heading} buttonsData={buttonsData}>
