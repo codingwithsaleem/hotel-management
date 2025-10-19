@@ -13,8 +13,8 @@ export default function DashboardHeroCover({
   children,
 }: {
   heading: string;
-  buttonsData: { label: string }[];
-  children: React.ReactNode;
+  buttonsData?: { label: string }[];
+  children?: React.ReactNode;
 }) {
   const bgImage = "/images/dashboard/bg-3.png";
 
@@ -33,13 +33,17 @@ export default function DashboardHeroCover({
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 leading-tight">
           {heading}
         </h1>
-        <div className="flex gap-2">
+        {
+          buttonsData && (
+            <div className="flex gap-2">
           {buttonsData.map((button) => (
             <Button key={button.label} className="cursor-pointer font-semibold">
               {button.label}
             </Button>
           ))}
         </div>
+          )
+        }
       </div>
       {children}
     </div>
