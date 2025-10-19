@@ -75,10 +75,10 @@ const sampleServiceRequests: ServiceRequest[] = [
 ]
 
 const statusColors = {
-  processing: "bg-orange-100 text-orange-800 hover:bg-orange-100",
-  completed: "bg-green-100 text-green-800 hover:bg-green-100",
-  cancelled: "bg-red-100 text-red-800 hover:bg-red-100",
-  pending: "bg-blue-100 text-blue-800 hover:bg-blue-100"
+  processing: "bg-blue-50 text-blue-700 border-blue-200",
+  completed: "bg-green-50 text-green-700 border-green-200",
+  cancelled: "bg-red-50 text-red-700 border-red-200",
+  pending: "bg-yellow-50 text-yellow-700 border-yellow-200"
 }
 
 interface ServiceRequestsTableProps {
@@ -97,64 +97,68 @@ export function ServiceRequestsTable({ serviceRequests = sampleServiceRequests }
   }
 
   return (
-    <div className="bg-white rounded-lg border">
-      <Table>
-        <TableHeader>
-          <TableRow className="bg-primary hover:bg-primary">
-            <TableHead className="text-white font-semibold">ID</TableHead>
-            <TableHead className="text-white font-semibold">Service</TableHead>
-            <TableHead className="text-white font-semibold">Room</TableHead>
-            <TableHead className="text-white font-semibold">Requested By</TableHead>
-            <TableHead className="text-white font-semibold">Status</TableHead>
-            <TableHead className="text-white font-semibold">Created At</TableHead>
-            <TableHead className="text-white font-semibold text-center">Actions</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {serviceRequests.map((request, index) => (
-            <TableRow 
-              key={request.id} 
-              className={index % 2 === 0 ? "bg-white hover:bg-gray-50" : "bg-gray-50 hover:bg-gray-100"}
-            >
-              <TableCell className="font-medium text-primary">{request.id}</TableCell>
-              <TableCell>{request.service}</TableCell>
-              <TableCell>{request.room}</TableCell>
-              <TableCell>{request.requestedBy}</TableCell>
-              <TableCell>
-                <Badge className={statusColors[request.status]}>
-                  {request.status}
-                </Badge>
-              </TableCell>
-              <TableCell>{request.createdAt}</TableCell>
-              <TableCell>
-                <div className="flex items-center gap-2 justify-center">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-8 w-8 p-0"
-                  >
-                    <Eye className="h-4 w-4" />
-                  </Button>
-                  <Select 
-                    onValueChange={(value) => handleStatusUpdate(request.id, value)}
-                    disabled={updatingStatus === request.id}
-                  >
-                    <SelectTrigger className="w-32 h-8">
-                      <SelectValue placeholder="Update Status" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="processing">Processing</SelectItem>
-                      <SelectItem value="completed">Completed</SelectItem>
-                      <SelectItem value="cancelled">Cancelled</SelectItem>
-                      <SelectItem value="pending">Pending</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+    <div className="py-10">
+      <div className="bg-white rounded-lg shadow overflow-hidden">
+        <div className="overflow-x-auto">
+          <Table>
+            <TableHeader className="bg-primary/20 border-b-4 border-b-primary p-4 h-16 md:text-lg">
+              <TableRow>
+                <TableHead className="text-foreground font-semibold">ID</TableHead>
+                <TableHead className="text-foreground font-semibold">Service</TableHead>
+                <TableHead className="text-foreground font-semibold">Room</TableHead>
+                <TableHead className="text-foreground font-semibold">Requested By</TableHead>
+                <TableHead className="text-foreground font-semibold">Status</TableHead>
+                <TableHead className="text-foreground font-semibold">Created At</TableHead>
+                <TableHead className="text-foreground font-semibold">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {serviceRequests.map((request, index) => (
+                <TableRow 
+                  key={request.id} 
+                  className={index % 2 === 0 ? "bg-white" : "bg-blue-50"}
+                >
+                  <TableCell className="font-medium text-foreground">{request.id}</TableCell>
+                  <TableCell className="text-foreground">{request.service}</TableCell>
+                  <TableCell className="text-foreground">{request.room}</TableCell>
+                  <TableCell className="text-foreground">{request.requestedBy}</TableCell>
+                  <TableCell>
+                    <Badge variant="outline" className={statusColors[request.status]}>
+                      {request.status}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="text-foreground">{request.createdAt}</TableCell>
+                  <TableCell>
+                    <div className="flex gap-2">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                      >
+                        <Eye className="h-4 w-4 text-primary" />
+                      </Button>
+                      <Select 
+                        onValueChange={(value) => handleStatusUpdate(request.id, value)}
+                        disabled={updatingStatus === request.id}
+                      >
+                        <SelectTrigger className="h-8 w-32 text-xs">
+                          <SelectValue placeholder="Update Status" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="processing">Processing</SelectItem>
+                          <SelectItem value="completed">Completed</SelectItem>
+                          <SelectItem value="cancelled">Cancelled</SelectItem>
+                          <SelectItem value="pending">Pending</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </div>
     </div>
   )
 }

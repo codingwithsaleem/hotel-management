@@ -44,7 +44,7 @@ const DesktopHeader = () => {
         Home
       </Link>
       <Link 
-        href="/dashboard" 
+        href="/dashboard/admin" 
         className="rounded-xl text-white px-4 py-2 text-sm font-medium"
       >
         Dashboard

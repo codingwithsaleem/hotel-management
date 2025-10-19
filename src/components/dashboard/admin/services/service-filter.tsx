@@ -39,7 +39,7 @@ export function ServiceFilter({ onFilter }: ServiceFilterProps) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-0">
-        <div className="flex flex-col md:flex-row gap-3 md:gap-4 items-stretch md:items-center bg-white/70 rounded-lg p-4">
+        <div className="flex flex-col md:flex-row gap-3 md:gap-4 items-stretch md:items-center bg-primary/10 rounded-lg p-4">
           
           {/* Search Services Dropdown */}
           <FormField

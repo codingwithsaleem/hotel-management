@@ -1,7 +1,7 @@
 'use client'
 
 import DashboardHeroCover from "@/components/dashboard/admin/dashboard-hero-cover"
-import { useState } from "react"
+// import { useState } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { FoodOrdersFilter } from "@/components/dashboard/admin/services/food-orders-filter"
 import { FoodOrdersTable } from "@/components/dashboard/admin/services/food-orders-table"
@@ -19,10 +19,16 @@ const AdminServicesPage = () => {
       
       <div className="p-6">
         <Tabs defaultValue="food-orders" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-6">
-            <TabsTrigger value="food-orders" className="text-lg font-medium">Food Orders</TabsTrigger>
-            <TabsTrigger value="service-requests" className="text-lg font-medium">Service Requests</TabsTrigger>
-            <TabsTrigger value="service" className="text-lg font-medium">Service</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-3 mb-6 bg-primary/10 p-0 h-12">
+            <TabsTrigger value="food-orders" className="text-lg font-medium data-[state=active]:bg-primary data-[state=active]:text-white">
+              Food Orders
+            </TabsTrigger>
+            <TabsTrigger value="service-requests" className="text-lg font-medium data-[state=active]:bg-primary data-[state=active]:text-white">
+              Service Requests
+            </TabsTrigger>
+            <TabsTrigger value="service" className="text-lg font-medium data-[state=active]:bg-primary data-[state=active]:text-white">
+              Service
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="food-orders" className="space-y-6">

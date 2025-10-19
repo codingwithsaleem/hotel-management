@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+// import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
@@ -82,9 +82,9 @@ const sampleServices: Service[] = [
 ]
 
 const statusColors = {
-  active: "bg-green-100 text-green-800 hover:bg-green-100",
-  inactive: "bg-red-100 text-red-800 hover:bg-red-100",
-  maintenance: "bg-orange-100 text-orange-800 hover:bg-orange-100"
+  active: "bg-green-50 text-green-700 border-green-200",
+  inactive: "bg-red-50 text-red-700 border-red-200",
+  maintenance: "bg-orange-50 text-orange-700 border-orange-200"
 }
 
 interface ServiceTableProps {
@@ -105,67 +105,71 @@ export function ServiceTable({ services = sampleServices }: ServiceTableProps) {
   }
 
   return (
-    <div className="bg-white rounded-lg border">
-      <Table>
-        <TableHeader>
-          <TableRow className="bg-primary hover:bg-primary">
-            <TableHead className="text-white font-semibold">Name</TableHead>
-            <TableHead className="text-white font-semibold">Category</TableHead>
-            <TableHead className="text-white font-semibold">Type</TableHead>
-            <TableHead className="text-white font-semibold">Price</TableHead>
-            <TableHead className="text-white font-semibold">Estimated Time</TableHead>
-            <TableHead className="text-white font-semibold">Status</TableHead>
-            <TableHead className="text-white font-semibold text-center">Actions</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {services.map((service, index) => (
-            <TableRow 
-              key={service.id} 
-              className={index % 2 === 0 ? "bg-white hover:bg-gray-50" : "bg-gray-50 hover:bg-gray-100"}
-            >
-              <TableCell className="font-medium">{service.name}</TableCell>
-              <TableCell>{service.category}</TableCell>
-              <TableCell>{service.type}</TableCell>
-              <TableCell className="font-semibold text-primary">{service.price}</TableCell>
-              <TableCell>{service.estimatedTime}</TableCell>
-              <TableCell>
-                <Badge className={statusColors[service.status]}>
-                  {service.status}
-                </Badge>
-              </TableCell>
-              <TableCell>
-                <div className="flex items-center gap-2 justify-center">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-8 w-8 p-0"
-                    onClick={() => handleView(service.id)}
-                  >
-                    <Eye className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-8 w-8 p-0"
-                    onClick={() => handleEdit(service.id)}
-                  >
-                    <Edit className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-8 w-8 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
-                    onClick={() => handleDelete(service.id)}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                </div>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+    <div className="py-10">
+      <div className="bg-white rounded-lg shadow overflow-hidden">
+        <div className="overflow-x-auto">
+          <Table>
+            <TableHeader className="bg-primary/20 border-b-4 border-b-primary p-4 h-16 md:text-lg">
+              <TableRow>
+                <TableHead className="text-foreground font-semibold">Name</TableHead>
+                <TableHead className="text-foreground font-semibold">Category</TableHead>
+                <TableHead className="text-foreground font-semibold">Type</TableHead>
+                <TableHead className="text-foreground font-semibold">Price</TableHead>
+                <TableHead className="text-foreground font-semibold">Estimated Time</TableHead>
+                <TableHead className="text-foreground font-semibold">Status</TableHead>
+                <TableHead className="text-foreground font-semibold">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {services.map((service, index) => (
+                <TableRow 
+                  key={service.id} 
+                  className={index % 2 === 0 ? "bg-white" : "bg-blue-50"}
+                >
+                  <TableCell className="font-medium text-foreground">{service.name}</TableCell>
+                  <TableCell className="text-foreground">{service.category}</TableCell>
+                  <TableCell className="text-foreground">{service.type}</TableCell>
+                  <TableCell className="font-semibold text-foreground">{service.price}</TableCell>
+                  <TableCell className="text-foreground">{service.estimatedTime}</TableCell>
+                  <TableCell>
+                    <Badge variant="outline" className={statusColors[service.status]}>
+                      {service.status}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex gap-2">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                        onClick={() => handleView(service.id)}
+                      >
+                        <Eye className="h-4 w-4 text-primary" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                        onClick={() => handleEdit(service.id)}
+                      >
+                        <Edit className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
+                        onClick={() => handleDelete(service.id)}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </div>
     </div>
   )
 }
