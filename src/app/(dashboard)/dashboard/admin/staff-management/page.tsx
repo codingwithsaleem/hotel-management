@@ -1,6 +1,8 @@
 'use client'
 
 import DashboardHeroCover from "@/components/dashboard/admin/dashboard-hero-cover"
+import StaffManagementFilter from "@/components/dashboard/admin/staff-management/staff-management-filter"
+import StaffManagementTable from "@/components/dashboard/admin/staff-management/staff-management-table"
 // import { useState } from "react"
 
 
@@ -35,9 +37,9 @@ const StaffManagementPage = () => {
   return (
     <>
       <DashboardHeroCover heading={"Staff Management"} buttonsData={[{ label: "+ Add New Staff" }]}>
-       <></>
+       <StaffManagementFilter />
       </DashboardHeroCover>
-      <></>
+      <StaffManagementTable />
     </>
   )
 }

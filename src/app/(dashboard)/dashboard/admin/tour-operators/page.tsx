@@ -1,6 +1,8 @@
 'use client'
 
 import DashboardHeroCover from "@/components/dashboard/admin/dashboard-hero-cover"
+import TourOperatorsFilters from "@/components/dashboard/admin/tour-operators/TourOperatorsFilters"
+import TourOperatorsTable from "@/components/dashboard/admin/tour-operators/TourOperatorsTable"
 // import { useState } from "react"
 
 
@@ -35,9 +37,9 @@ const TourOperatorsPage = () => {
   return (
     <>
       <DashboardHeroCover heading={"Tour Operators"} >
-       <></>
+       <TourOperatorsFilters />
       </DashboardHeroCover>
-      <></>
+      <TourOperatorsTable />
     </>
   )
 }
