@@ -36,7 +36,7 @@ const sideBarItems = [
   {
     icon: Home,
     label: "Dashboard",
-    href: "/dashboard",
+    href: "/dashboard/admin",
     isMainItem: true,
   },
   {
@@ -70,23 +70,23 @@ const sideBarItems = [
   {
     icon: Settings,
     label: "Configuration",
-    href: "/configuration",
+    href: "/dashboard/admin/configuration",
     isExpandable: true,
     dropdown: [
-      { label: "Premise Types", href: "/premise-types" },
-      { label: "Hotel Profile", href: "/hotel-profile" },
-      { label: "Assign Hotels to Users", href: "/assign-hotels" },
+      { label: "Premise Types", href: "/dashboard/admin/premise-types" },
+      { label: "Hotel Profile", href: "/dashboard/admin/hotel-profile" },
+      { label: "Assign Hotels to Users", href: "/dashboard/admin/assign-hotels" },
     ],
   },
   {
     icon: Users,
     label: "Guest Features",
-    href: "/guest-features",
+    href: "/dashboard/admin/guest-features",
     isExpandable: true,
     dropdown: [
-      { label: "Reservations", href: "/reservations" },
-      { label: "Hotel Services", href: "/hotel-services" },
-      { label: "Loyalty Programs", href: "/loyalty-programs" },
+      { label: "Reservations", href: "/dashboard/admin/reservations" },
+      { label: "Hotel Services", href: "/dashboard/admin/hotel-services" },
+      { label: "Loyalty Programs", href: "/dashboard/admin/loyalty-programs" },
     ],
   },
 ];
