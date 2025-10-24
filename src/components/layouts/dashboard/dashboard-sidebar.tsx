@@ -20,7 +20,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import Link from "next/link";
-// import { usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 // import { useDispatch } from "react-redux";
@@ -32,7 +32,7 @@ import { useState } from "react";
 // import ApiErrorHandler from "@/lib/utils/error-handler";
 import Image from "next/image";
 
-const sideBarItems = [
+const sideBarAdminItems = [
   {
     icon: Home,
     label: "Dashboard",
@@ -63,7 +63,10 @@ const sideBarItems = [
       },
       { label: "Tour Operators", href: "/dashboard/admin/tour-operators" },
       { label: "Staff Management", href: "/dashboard/admin/staff-management" },
-      { label: "Finance Statement", href: "/dashboard/admin/finance-statement" },
+      {
+        label: "Finance Statement",
+        href: "/dashboard/admin/finance-statement",
+      },
       { label: "Guest Bookings & QR", href: "/dashboard/admin/guest-bookings" },
     ],
   },
@@ -75,7 +78,10 @@ const sideBarItems = [
     dropdown: [
       { label: "Premise Types", href: "/dashboard/admin/premise-types" },
       { label: "Hotel Profile", href: "/dashboard/admin/hotel-profile" },
-      { label: "Assign Hotels to Users", href: "/dashboard/admin/assign-hotels" },
+      {
+        label: "Assign Hotels to Users",
+        href: "/dashboard/admin/assign-hotels",
+      },
     ],
   },
   {
@@ -91,18 +97,83 @@ const sideBarItems = [
   },
 ];
 
+const sideBarStaffItems = [
+  {
+    icon: Home,
+    label: "Dashboard",
+    href: "/dashboard/staff",
+    isMainItem: true,
+  },
+  {
+    icon: Settings,
+    label: "Configuration",
+    href: "/dashboard/staff/configuration",
+    isExpandable: true,
+    dropdown: [
+      { label: "Premise Types", href: "/dashboard/staff/premise-types" },
+      { label: "Hotel Profile", href: "/dashboard/staff/hotel-profile" },
+      {
+        label: "Assign Hotels to Users",
+        href: "/dashboard/staff/assign-hotels",
+      },
+    ],
+  },
+];
+
+const sideBarGuestItems = [
+  {
+    icon: Home,
+    label: "Dashboard",
+    href: "/dashboard/guest",
+    isMainItem: true,
+  },
+  {
+    icon: Users,
+    label: "Guest Features",
+    href: "/dashboard/guest/guest-features",
+    isExpandable: true,
+    dropdown: [
+      { label: "Reservations", href: "/dashboard/guest/reservations" },
+      { label: "Hotel Services", href: "/dashboard/guest/hotel-services" },
+      { label: "Loyalty Programs", href: "/dashboard/guest/loyalty-programs" },
+    ],
+  },
+];
+
+const sideBarTourItems = [
+  {
+    icon: Home,
+    label: "Dashboard",
+    href: "/dashboard/tour",
+    isMainItem: true,
+  },
+  {
+    icon: Users,
+    label: "Guest Features",
+    href: "/dashboard/tour/guest-features",
+    isExpandable: true,
+    dropdown: [
+      { label: "Reservations", href: "/dashboard/tour/reservations" },
+      { label: "Hotel Services", href: "/dashboard/tour/hotel-services" },
+      { label: "Loyalty Programs", href: "/dashboard/tour/loyalty-programs" },
+    ],
+  },
+];
+
 export default function DashboardSidebar() {
-  // const pathname = usePathname();
-  // const paths = pathname.split("/");
+  const pathname = usePathname();
+  const paths = pathname.split("/");
   // const { state } = useSidebar();
   // const router = useRouter();
   // const dispatch = useDispatch<AppDispatch>();
-  const [expandedItems, setExpandedItems] = useState<string[]>(['Hotel Management']);
+  const [expandedItems, setExpandedItems] = useState<string[]>([
+    "Hotel Management",
+  ]);
 
   const toggleExpanded = (label: string) => {
-    setExpandedItems(prev =>
+    setExpandedItems((prev) =>
       prev.includes(label)
-        ? prev.filter(item => item !== label)
+        ? prev.filter((item) => item !== label)
         : [...prev, label]
     );
   };
@@ -134,7 +205,10 @@ export default function DashboardSidebar() {
   // };
 
   return (
-    <Sidebar collapsible="offcanvas" className="border-r-1 border-gray-200 bg-white">
+    <Sidebar
+      collapsible="offcanvas"
+      className="border-r-1 border-gray-200 bg-white"
+    >
       <SidebarHeader className="border-b-1 border-gray-200 p-6 bg-white">
         <div className="flex items-center">
           <Image
@@ -148,14 +222,23 @@ export default function DashboardSidebar() {
       </SidebarHeader>
       <SidebarContent className="bg-white py-10 pl-4">
         <div className="space-y-0">
-          {sideBarItems.map((item) => {
+          {(paths[2] === "admin"
+            ? sideBarAdminItems
+            : paths[2] === "staff"
+            ? sideBarStaffItems
+            : paths[2] === "guest"
+            ? sideBarGuestItems
+            : paths[2] === "tour"
+            ? sideBarTourItems
+            : []
+          ).map((item) => {
             const isExpanded = expandedItems.includes(item.label);
             // const isActive = pathname === item.href;
-            
+
             return (
               <div key={item.label} className="w-full">
                 {/* Main Item */}
-                <div 
+                <div
                   className={cn(
                     "w-full transition-all duration-200 text-lg mb-2",
                     item.isMainItem && "bg-primary/15"
@@ -171,7 +254,9 @@ export default function DashboardSidebar() {
                     >
                       <div className="flex items-center space-x-3">
                         <item.icon className="h-5 w-5 text-primary" />
-                        <span className="text-sm font-medium">{item.label}</span>
+                        <span className="text-sm font-medium">
+                          {item.label}
+                        </span>
                       </div>
                       {isExpanded ? (
                         <ChevronDown className="h-4 w-4 text-gray-500" />
@@ -184,15 +269,17 @@ export default function DashboardSidebar() {
                       href={item.href}
                       className={cn(
                         "w-full flex items-center space-x-3 px-4 py-6 transition-all duration-200",
-                        item.isMainItem 
-                          ? "text-black font-semibold" 
+                        item.isMainItem
+                          ? "text-black font-semibold"
                           : "text-gray-700 hover:bg-blue-50 font-medium"
                       )}
                     >
-                      <item.icon className={cn(
-                        "h-5 w-5",
-                        item.isMainItem ? "text-primary" : "text-primary"
-                      )} />
+                      <item.icon
+                        className={cn(
+                          "h-5 w-5",
+                          item.isMainItem ? "text-primary" : "text-primary"
+                        )}
+                      />
                       <span className="text-sm">{item.label}</span>
                     </Link>
                   )}
@@ -225,3 +312,74 @@ export default function DashboardSidebar() {
     </Sidebar>
   );
 }
+
+//  {sideBarAdminItems.map((item) => {
+//             const isExpanded = expandedItems.includes(item.label);
+//             // const isActive = pathname === item.href;
+
+//             return (
+//               <div key={item.label} className="w-full">
+//                 {/* Main Item */}
+//                 <div
+//                   className={cn(
+//                     "w-full transition-all duration-200 text-lg mb-2",
+//                     item.isMainItem && "bg-primary/15"
+//                   )}
+//                 >
+//                   {item.isExpandable ? (
+//                     <button
+//                       onClick={() => toggleExpanded(item.label)}
+//                       className={cn(
+//                         "w-full flex items-center justify-between px-4 py-6 text-left transition-all duration-200",
+//                         "hover:bg-primary/15 text-gray-700 font-medium"
+//                       )}
+//                     >
+//                       <div className="flex items-center space-x-3">
+//                         <item.icon className="h-5 w-5 text-primary" />
+//                         <span className="text-sm font-medium">{item.label}</span>
+//                       </div>
+//                       {isExpanded ? (
+//                         <ChevronDown className="h-4 w-4 text-gray-500" />
+//                       ) : (
+//                         <ChevronRight className="h-4 w-4 text-gray-500" />
+//                       )}
+//                     </button>
+//                   ) : (
+//                     <Link
+//                       href={item.href}
+//                       className={cn(
+//                         "w-full flex items-center space-x-3 px-4 py-6 transition-all duration-200",
+//                         item.isMainItem
+//                           ? "text-black font-semibold"
+//                           : "text-gray-700 hover:bg-blue-50 font-medium"
+//                       )}
+//                     >
+//                       <item.icon className={cn(
+//                         "h-5 w-5",
+//                         item.isMainItem ? "text-primary" : "text-primary"
+//                       )} />
+//                       <span className="text-sm">{item.label}</span>
+//                     </Link>
+//                   )}
+//                 </div>
+
+//                 {/* Dropdown Items */}
+//                 {item.isExpandable && isExpanded && item.dropdown && (
+//                   <div className="bg-white border-l-2 border-blue-200 ml-4">
+//                     <ul className="py-2">
+//                       {item.dropdown.map((subItem) => (
+//                         <li key={subItem.label}>
+//                           <Link
+//                             href={subItem.href}
+//                             className="block px-6 py-2 text-sm text-primary/80 hover:bg-blue-50 hover:text-primary transition-colors duration-200"
+//                           >
+//                             • {subItem.label}
+//                           </Link>
+//                         </li>
+//                       ))}
+//                     </ul>
+//                   </div>
+//                 )}
+//               </div>
+//             );
+//           })}
