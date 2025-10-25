@@ -2,14 +2,15 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import Link from "next/link";
 
-export function QuickLinks() {
-  const links = [
-    { label: "Premises", href: "#" },
-    { label: "Staff", href: "#" },
-    { label: "Hotel Profile", href: "#" },
-    { label: "Services", href: "#" },
-  ]
+
+interface QuickLinksProps {
+  links: { label: string; href: string }[]
+}
+
+export function QuickLinks({links}: QuickLinksProps) {
+
 
   return (
     <Card className="bg-background border-0 shadow-sm py-0">
@@ -19,13 +20,14 @@ export function QuickLinks() {
       <CardContent>
         <div className="grid grid-cols-2 gap-3">
           {links.map((link) => (
-            <Button
-              key={link.label}
-              variant="outline"
-              className="border-primary text-primary hover:bg-primary/5 bg-primary/10"
-            >
+            <Link key={link.label} href={link.href}>
+              <Button
+                variant="outline"
+                className="border-primary text-primary hover:bg-primary/5 bg-primary/10 w-full"
+              >
               {link.label}
             </Button>
+            </Link>
           ))}
         </div>
       </CardContent>

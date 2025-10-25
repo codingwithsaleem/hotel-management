@@ -10,12 +10,19 @@ import { RecentActivities } from "@/components/dashboard/admin/recent-activities
 import React from "react";
 
 const page = () => {
+
+    const links =[
+    { label: "Premises", href: "/premises" },
+    { label: "Staff", href: "/staff" },
+    { label: "Hotel Profile", href: "/hotel-profile" },
+    { label: "Services", href: "/services" },
+  ]
   return (
     <>
       <TaskOverview />
       <Charts />
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <QuickLinks />
+        <QuickLinks links={links} />
         <Notifications />
         <HotelInformation />
       </div>

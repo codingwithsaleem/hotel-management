@@ -6,7 +6,7 @@ import Image from "next/image";
 import React from "react";
 
 const VisitedHotels = () => {
-  let visitedHotels = [
+  const visitedHotels = [
     {
       id: 1,
       name: "Grand Plaza Hotel",
